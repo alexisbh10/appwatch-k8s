@@ -53,8 +53,8 @@ go run main.go
 ```
 
 La aplicación arrancará en el puerto `8080`. Puedes probar los endpoints de salud:
-* `http://localhost:8080/healthz`
-* `http://localhost:8080/readyz`
+* `http://localhost:8080/health`
+* `http://localhost:8080/ready`
 
 ### 2. Construir y probar el contenedor Docker localmente
 
