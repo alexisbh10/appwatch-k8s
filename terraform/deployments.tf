@@ -31,6 +31,14 @@ resource "kubernetes_deployment" "appwatch" {
                         container_port = 8080
                     }
 
+                    security_context {
+                        run_as_user = 10001
+                        run_as_group = 10001
+                        allow_privilege_escalation = false
+                        read_only_root_filesystem = true
+                        run_as_non_root = true
+                    }
+
                     resources {
                         limits = {
                             cpu = "100m"
