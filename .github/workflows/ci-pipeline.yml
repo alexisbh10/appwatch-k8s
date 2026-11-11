@@ -101,7 +101,7 @@ jobs:
       - name: Run Trivy Container Image Scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
           format: 'table'
           exit-code: '1'
           severity: 'CRITICAL,HIGH'

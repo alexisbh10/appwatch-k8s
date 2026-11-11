@@ -49,7 +49,17 @@ func main() {
 
 	// Start the HTTP server and listen on the specified port
 	fmt.Printf("Starting server on port %s...\n", port)
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
+
+	// Creamos el servidor HTTP configurando timeouts estrictos para evitar ataques de denegación de servicio (DoS)
+	server := &http.Server{
+		Addr:         ":" + port,
+		Handler:      nil, // Use the default HTTP mux
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		IdleTimeout:  120 * time.Second,
+	}
+
+	if err := server.ListenAndServe(); err != nil {
 		fmt.Printf("Failed to start server: %v\n", err)
 		os.Exit(1)
 	}
